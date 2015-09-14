@@ -58,6 +58,7 @@
     ("SHIFT" "KEYBOARD_LEFT_SHIFT")
     ("ALT"   "KEYBOARD_LEFT_ALT")
     ("GUI"   "KEYBOARD_LEFT_GUI")
+    ("SLASH_PIPE"   "KEYBOARD_NON_US_SLASH_PIPE")
     (`("layer" ,layer) (format "LAYER(%s)" layer))
     ("" "0") ; dead key
     (keycode (format "KEY_%s" keycode))))
