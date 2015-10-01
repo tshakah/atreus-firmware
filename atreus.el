@@ -57,7 +57,13 @@
     ("CTRL_R" "KEYBOARD_RIGHT_CTRL")
     ("SHIFT" "KEYBOARD_LEFT_SHIFT")
     ("ALT"   "KEYBOARD_LEFT_ALT")
+    ("ALT_R"   "KEYBOARD_RIGHT_ALT")
     ("GUI"   "KEYBOARD_LEFT_GUI")
+    ("MENU"  "KEYBOARD_APPLICATION")
+    ("KEYPAD_ENTER"  "KEYPAD_ENTER")
+    ("VOL_UP"  "KEYBOARD_VOLUME_UP")
+    ("VOL_DOWN"  "KEYBOARD_VOLUME_DOWN")
+    ("MUTE"  "KEYBOARD_MUTE")
     ("SLASH_PIPE"   "KEYBOARD_NON_US_SLASH_PIPE")
     (`("layer" ,layer) (format "LAYER(%s)" layer))
     ("" "0") ; dead key

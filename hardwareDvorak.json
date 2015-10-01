@@ -1,14 +1,14 @@
 [[["QUOTE", "COMMA", "PERIOD", "P", "Y", "F", "G", "C", "R", "Z"],
   ["A", "O", "E", "U", "I", "D", "H", "T", "N", "S"],
-  ["SEMICOLON", "Q", "J", "K", "X", "ENTER", "B", "M", "W", "V", "L"],
-  ["ESC", "TAB", "GUI", "SHIFT", "BACKSPACE", "CTRL", "SPACE", "FN", "SLASH", "MINUS", "ALT"]],
- [[["shift", "1"], ["shift", "2"], ["shift", "3"], ["shift", "4"],["shift", "5"], ["shift", "6"], ["shift", "7"], ["shift", "8"], ["shift", "9"], ["shift", "0"]],
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-  ["TILDE", "SLASH_PIPE", "", "LEFT_BRACE", ["shift", "LEFT_BRACE"], "ALT", ["shift", "RIGHT_BRACE"], "RIGHT_BRACE", "BACKSLASH", "BACKSPACE", "EQUAL"],
-  [["function", 2], ["shift", "INSERT"], "GUI", "SHIFT", "DELETE", "CTRL","SPACE", "FN", "", "", ""]],
+  ["SEMICOLON", "Q", "J", "K", "X", "ALT", "B", "M", "W", "V", "L"],
+  ["ESC", "TAB", "GUI", "SHIFT", "BACKSPACE", "CTRL", "SPACE", "FN", "SLASH", "MINUS", "ENTER"]],
+ [["INSERT", "HOME", "UP", "END", ["shift", "9"], "PAGE_UP", "7", "8", "9", ["shift", "8"]],
+  ["DELETE", "LEFT", "DOWN", "RIGHT", ["shift", "0"], "PAGE_DOWN", "4", "5", "6", "EQUAL"],
+  ["LEFT_BRACE", "RIGHT_BRACE", ["shift", "LEFT_BRACE"], ["shift", "RIGHT_BRACE"], "BACKSLASH", "ALT_R", "TILDE", "1", "2", "3", "SLASH_PIPE"],
+  [["function", 2], "MENU", "GUI", "SHIFT", "DELETE", "CTRL_R","SPACE", "FN", "PERIOD", "0", "KEYPAD_ENTER"]],
  [["INSERT", "HOME", "UP", "END", "PAGE_UP", "UP", "F7", "F8", "F9", "F10"],
   ["DELETE", "LEFT", "DOWN", "RIGHT", "PAGE_DOWN", "DOWN", "F4", "F5", "F6", "F11"],
-  ["", "", "", "", "", "ALT", "", "F1", "F2", "F3", "F12"],
+  ["MUTE", "VOL_UP", "VOL_DOWN", "PRINTSCREEN", "", "ALT", "", "F1", "F2", "F3", "F12"],
   ["", "", "GUI", "SHIFT", "BACKSPACE", "CTRL","SPACE", "FN", "", "", ["reset"]]]
 ]
 
