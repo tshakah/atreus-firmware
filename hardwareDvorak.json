@@ -9,7 +9,7 @@
  [["INSERT", "HOME", "UP", "END", "PAGE_UP", "UP", "F7", "F8", "F9", "F10"],
   ["DELETE", "LEFT", "DOWN", "RIGHT", "PAGE_DOWN", "DOWN", "F4", "F5", "F6", "F11"],
   ["MUTE", "VOL_UP", "VOL_DOWN", "PRINTSCREEN", "", "ALT_R", "", "F1", "F2", "F3", "F12"],
-  ["", "MENU", "GUI", "BACKSPACE", "SHIFT", "CTRL_R","SPACE", "FN", "", "", ["reset"]]]
+  ["", "MENU", "GUI", "BACKSPACE", "SHIFT", "CTRL_R","SPACE", "FN", "", ["reset"], "ENTER"]]
 ]
 
 /* hardwaredvorak.json

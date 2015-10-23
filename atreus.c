@@ -184,13 +184,21 @@ void calculate_presses() {
   };
 };
 
-
 // Top level stuff
 
 void init() {
   CPU_PRESCALE(0);
   DDRB = DDRC = DDRE = DDRF = DDRD = 0; // set everything to input
   PORTB = PORTC = PORTE = PORTF = PORTD = 255; // enable pullups
+
+  // make led pins outputs and turn off
+  DDRB &= ~(1 << DDB1);
+  DDRB &= ~(1 << DDB2);
+  DDRB &= ~(1 << DDB3);
+  PORTB &= ~(1 << PB1);
+  PORTB &= ~(1 << PB2);
+  PORTB &= ~(1 << PB3);
+
   // set the row pins as outputs
   for (int r = 0; r < ROW_COUNT; r++) {
     *(row_dirs[r]) |= (char)(1 << row_pins[r]);
@@ -218,19 +226,23 @@ void clear_keys() {
 };
 
 void set_leds() {
+  if (keyboard_modifier_keys & KEY_LEFT_SHIFT || keyboard_modifier_keys & KEY_RIGHT_SHIFT) {
+      PORTB |= (1 << PB3); // left led on
+  } else {
+      PORTB &= ~(1 << PB3); // left led on
+  }
+
   if (current_layer != previous_layer) {
     previous_layer = current_layer;
     if ((int *)current_layer == layers[1]) {
-      DDRB |= (1 << DDB1);
-      PORTB |= (1 << PB1); // on Led right
-      DDRB &= ~(1 << DDB3); // dim Led left
+      PORTB &= ~(1 << PB2); // right led off
+      PORTB |= (1 << PB1); // center led on
     } else if ((int *)current_layer == layers[2]) {
-      DDRB |= (1 << DDB3);
-      PORTB |= (1 << PB3); // on Led Left
-      DDRB &= ~(1 << DDB1); // dim Led right
+      PORTB &= ~(1 << PB1); // center led off
+      PORTB |= (1 << PB2); // right led on
     } else {
-      DDRB &= ~(1 << DDB1); // dim Led right
-      DDRB &= ~(1 << DDB3); // dim Led left
+      PORTB &= ~(1 << PB1); // center led off
+      PORTB &= ~(1 << PB2); // right led off
     }
   }
 }
@@ -241,8 +253,8 @@ int main() {
     clear_keys();
     debounce(DEBOUNCE_PASSES);
     pre_invoke_functions();
-    set_leds();
     calculate_presses();
+    set_leds();
     usb_keyboard_send();
   };
 };
