@@ -229,7 +229,7 @@ void set_leds() {
   if (keyboard_modifier_keys & KEY_LEFT_SHIFT || keyboard_modifier_keys & KEY_RIGHT_SHIFT) {
       PORTB |= (1 << PB3); // left led on
   } else {
-      PORTB &= ~(1 << PB3); // left led on
+      PORTB &= ~(1 << PB3); // left led off
   }
 
   if (current_layer != previous_layer) {
