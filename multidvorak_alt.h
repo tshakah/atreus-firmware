@@ -1,3 +1,4 @@
+
 /*
    This layout assumes that the OS will be translating keycodes into
    Dvorak for the first two layers, as well as an alternate pair of
@@ -5,7 +6,9 @@
 
    The first layer has most of your keys in the expected positions,
    while the second layer (activated by the fn key) contains the
-   digits in a numpad orientation as well as most of the punctuation.
+   digits in a numpad orientation as well as arrows and most of the
+   punctuation. %, ^, ~, and | don't have their own key; they need
+   fn+shift to be hit.
 
    The third layer (activated by fn+esc) is just mostly function keys
    (on the right) and arrow/navcluster keys (on the left). Tapping the
@@ -22,9 +25,9 @@ int layer0[44] = {
     KEY_ESC, KEY_TAB, KEYBOARD_LEFT_GUI, KEYBOARD_LEFT_SHIFT, KEY_BACKSPACE, KEYBOARD_LEFT_CTRL, KEY_SPACE, PRE_FUNCTION(1), KEY_QUOTE, KEY_LEFT_BRACE, KEY_ENTER };
 
 int layer1[44] = {
-    SHIFT(KEY_1), SHIFT(KEY_2), SHIFT(KEY_MINUS), SHIFT(KEY_EQUAL), KEY_RIGHT, KEY_0, KEY_UP, KEY_7, KEY_8, KEY_9, SHIFT(KEY_8),
-    SHIFT(KEY_3), SHIFT(KEY_4), SHIFT(KEY_9), SHIFT(KEY_0), KEY_LEFT, KEY_0, KEY_DOWN, KEY_4, KEY_5, KEY_6, SHIFT(KEY_RIGHT_BRACE),
-    SHIFT(KEY_5), SHIFT(KEY_6), KEY_MINUS, KEY_EQUAL, KEY_TILDE, KEYBOARD_LEFT_ALT, SHIFT(KEY_7), KEY_1, KEY_2, KEY_3, KEY_BACKSLASH,
+    SHIFT(KEY_1), SHIFT(KEY_2), KEY_UP, SHIFT(KEY_MINUS), SHIFT(KEY_EQUAL), 0, KEY_PAGE_UP, KEY_7, KEY_8, KEY_9, SHIFT(KEY_8),
+    SHIFT(KEY_3), KEY_LEFT, KEY_DOWN, KEY_RIGHT, SHIFT(KEY_4), 0, KEY_PAGE_DOWN, KEY_4, KEY_5, KEY_6, SHIFT(KEY_RIGHT_BRACE),
+    KEY_MINUS, KEY_EQUAL, SHIFT(KEY_9), SHIFT(KEY_0), SHIFT(KEY_7), KEYBOARD_LEFT_ALT, KEY_TILDE, KEY_1, KEY_2, KEY_3, KEY_BACKSLASH,
     FUNCTION(2), SHIFT(KEY_INSERT), KEYBOARD_LEFT_GUI, KEYBOARD_LEFT_SHIFT, KEY_DELETE, KEYBOARD_LEFT_CTRL, KEY_SPACE, PRE_FUNCTION(1), KEY_E, KEY_0, KEY_RIGHT_BRACE };
 
 int layer2[44] = {
@@ -40,9 +43,9 @@ int layer3[44] = {
     KEY_ESC, KEY_TAB, KEYBOARD_LEFT_GUI, KEYBOARD_LEFT_SHIFT, KEY_BACKSPACE, KEYBOARD_LEFT_CTRL, KEY_SPACE, PRE_FUNCTION(1), KEY_MINUS, KEY_SLASH, KEY_ENTER };
 
 int layer4[44] = {
-    SHIFT(KEY_1), SHIFT(KEY_2), SHIFT(KEY_LEFT_BRACE), SHIFT(KEY_RIGHT_BRACE), SHIFT(KEY_BACKSLASH), KEY_0, KEY_PAGE_UP, KEY_7, KEY_8, KEY_9, SHIFT(KEY_8),
-    SHIFT(KEY_3), SHIFT(KEY_4), SHIFT(KEY_9), SHIFT(KEY_0), KEY_TILDE, KEY_0, KEY_PAGE_DOWN, KEY_4, KEY_5, KEY_6, SHIFT(KEY_EQUAL),
-    SHIFT(KEY_5), SHIFT(KEY_6), KEY_LEFT_BRACE, KEY_RIGHT_BRACE, SHIFT(KEY_TILDE), KEYBOARD_LEFT_ALT, KEY_BACKSLASH, KEY_1, KEY_2, KEY_3, KEY_BACKSLASH,
+    SHIFT(KEY_1), SHIFT(KEY_2), KEY_UP, SHIFT(KEY_MINUS), SHIFT(KEY_EQUAL), 0, KEY_PAGE_UP, KEY_7, KEY_8, KEY_9, SHIFT(KEY_8),
+    SHIFT(KEY_3), KEY_LEFT, KEY_DOWN, KEY_RIGHT, SHIFT(KEY_4), 0, KEY_PAGE_DOWN, KEY_4, KEY_5, KEY_6, SHIFT(KEY_RIGHT_BRACE),
+    KEY_MINUS, KEY_EQUAL, SHIFT(KEY_9), SHIFT(KEY_0), SHIFT(KEY_7), KEYBOARD_LEFT_ALT, KEY_TILDE, KEY_1, KEY_2, KEY_3, KEY_BACKSLASH,
     FUNCTION(2), SHIFT(KEY_INSERT), KEYBOARD_LEFT_GUI, KEYBOARD_LEFT_SHIFT, KEY_BACKSPACE, KEYBOARD_LEFT_CTRL, KEY_SPACE, PRE_FUNCTION(1), KEY_PERIOD, KEY_0, KEY_EQUAL };
 
 
@@ -65,11 +68,9 @@ void layer_jump() {
   layer_to_jump = 2;
 };
 
-// toggle layer orbits for OS or "hardware" keycode translation.
 void hwdvorak() {
-  base_layer = base_layer ? 0 : 3;
-  current_layer_number = base_layer;
-  current_layer = layers[base_layer];
+  current_layer = layers[3];
+  base_layer = 3;
 };
 
 void (*layer_functions[])(void) = {reset, activate_fn, layer_jump, hwdvorak};

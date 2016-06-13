@@ -2,10 +2,60 @@
 
 This is the firmware for the [Atreus keyboard](https://github.com/technomancy/atreus).
 
+**Notice**: this codebase should be considered deprecated; the
+recommendation going forward is to use the
+[TMK firmware](https://github.com/technomancy/tmk_keyboard/tree/atreus)
+instead. However, this codebase is still of interest to people who
+want to read the codebase since it is much simpler and easier to
+understand than TMK, where the support for additional keyboards and
+many advanced features make the code difficult to read.
+
 This branch is specific to the Atreus variant that uses the
 [A-Star Micro](http://www.pololu.com/product/3101). Earlier versions
 used the [Teensy 2](http://pjrc.com/store/teensy.html); these should
 use the `teensy2` branch of this repository.
+
+## Layout
+
+Only a handful of punctuation marks (and no digits) are available
+unshifted, and all the modifiers are on the bottom row:
+
+     q     w     e     r     t       ||       y     u     i     o    p
+     a     s     d     f     g       ||       h     j     k     l    ;
+     z     x     c     v     b       ||       n     m     ,     .    /
+    esc   tab  super shift bksp ctrl || alt space  fn     -     '  enter
+
+The numbers and most of the punctuation are on the fn layer with a
+numpad-style arrangement under the right hand:
+
+     !     @     {     }     |       ||     pgup    7     8     9    *
+     #     $     (     )     `       ||     pgdn    4     5     6    +
+     %     ^     [     ]     ~       ||       &     1     2     3    \
+    L2  insert super shift bksp ctrl || alt space   fn    .     0    =
+
+The `L2` key switches it to the function layer, and tapping `L0` here
+brings it back to the first layer.
+
+    insert home up   end   pgup      ||      up     F7    F8    F9   F10
+     del   left down right pgdn      ||     down    F4    F5    F6   F11
+                                     ||             F1    F2    F3   F12
+               super shift bksp ctrl || alt space   L0             reset
+
+If you want easier access to the arrow keys, you can try the
+`qwerty_alt` layout, which puts them on the fn layer:
+
+     !    @     up     {    }        ||     pgup    7     8     9    *
+     #  left   down  right  $        ||     pgdn    4     5     6    +
+     [    ]      (     )    &        ||       `     1     2     3    \
+    L2  insert super shift bksp ctrl || alt space   fn    .     0    =
+
+Further alternate layouts are included; see "Customizing Layout" below
+for making your own.
+
+* colemak
+* softdvorak (assumes the OS is set to dvorak, and shuffles punctuation accordingly)
+* hardwaredvorak (lets you type in dvorak even if the OS is set to qwerty)
+* multidvorak (combines softdvorak and hardwaredvorak)
 
 ## Usage
 
@@ -52,8 +102,7 @@ $ diff /tmp/dev-off /tmp/dev-on
 ```
 
 To use another C layout, copy it to `layout.h`; for example `cp
-multidvorak.h layout.h`. To use a JSON layout, run `make jsonlayout
-LAYOUT=softdvorak` and it will be written to `layout.h`.
+multidvorak.h layout.h`.
 
 Usually you won't be able to upload the firmware from a virtualized
 OS; the virtualization interferes with the USB connection. However,
@@ -140,9 +189,12 @@ Inputs:
 If you soldered the PCB in upside down, never fear! This can be fixed
 in the firmware without removing the switches and resoldering. Simply
 run `make SWAPCOLUMNS=yes USB=...` to use a reversed pinout
-configuration.
+configuration. A
+[pre-compiled firmware](https://atreus.technomancy.us/atreus-swapcolumns.hex)
+with the columns swapped is also available. You may need to run `make
+clean` before using this option.
 
-## Layouts in C
+## Customizing Layout
 
 Layouts in C are arrays of integers. For basic key presses, use the
 keycodes defined in `usb_keyboard.h`. For modified key presses use the
@@ -168,33 +220,6 @@ layer-changing functions should be defined. There is also a
 `per_cycle` function you can define which will run once per completed
 scan.
 
-## Layouts in JSON
-
-See `qwerty.json` for an example.
-
-The layout JSON should simply be a three-dimensional array. At the top
-level, every array element is a layer. You can have up to 64
-layers. Each layer is an array of rows, and each row is an array of
-keycodes. A keycode can either be a keypress (described in
-`usb_keyboard.h`), a keypress with a modifier (like `["shift", "7"]`
-to insert a `&` character), `"fn"` to switch to layer 1 while held, or
-`["layer", 0]` to switch to a given layer beyond while the key is
-being held. It's also advised to include a `["reset"]` key as this is
-used to program updates to the firmware without opening the case to
-hit the hardware reset button. Finally, an empty string can be used to
-indicate a keypress which does nothing.
-
-The JSON layouts are parsed by the `atreus.el` code in Emacs. `M-x
-atreus-make` will compile a given JSON file into a `.hex` file for
-uploading, and `M-x atreus-view` will compile JSON into an HTML table
-and open it in the browser. But the `jsonlayout` makefile target
-automates this.
-
-Alternatively there is a script `atreus-layout-to-svg.sh` that will
-compile the json into HTML document with embedded SVG layouts. The
-`jsonlayout` makefile target also automates this. 
-(`atreus-layout-to-svg.sh` relies on sed and jq)
-
 ## How it works
 
 Since the microcontroller has a limited number of pins, the switches
@@ -218,17 +243,10 @@ before counting any single keypress or release as legitimate.
 There seem to be issues with [avrdude uploading the firmware from Ubuntu 14.04](https://arduino.stackexchange.com/questions/1380/sketches-not-uploading-to-micro-from-ubuntu-14-04).
 
 Occasionally there are issues when switching layers that a key pressed
-in one layer briefly sends a keycode for the layer you're switching
-to. The
-[TMK firmware](https://github.com/technomancy/tmk_keyboard/tree/atreus)
-avoids this particular bug.
-
-## TODO
-
-* Support layer toggle bindings
+in one layer briefly sends a keycode for the layer you're switching to.
 
 ## License
 
-Copyright © 2014 Phil Hagelberg and contributors
+Copyright © 2014-2016 Phil Hagelberg and contributors
 
 Released under the [GNU GPL version 3](https://www.gnu.org/licenses/gpl.html).
