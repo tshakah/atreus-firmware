@@ -20,15 +20,15 @@ use the `teensy2` branch of this repository.
 Only a handful of punctuation marks (and no digits) are available
 unshifted, and all the modifiers are on the bottom row:
 
-     q     w     e     r     t       ||       y     u     i     o    p
-     a     s     d     f     g       ||       h     j     k     l    ;
-     z     x     c     v     b       ||       n     m     ,     .    /
-    esc   tab  super shift bksp ctrl || alt space  fn     -     '  enter
+     z     y     o     u     x       ||       f     g     r     c    v
+     h     i     e     a     j       ||       l     s     t     n    w
+     q     ,     .     /     '       ||       b     d     m     p    k
+    esc   tab  super shift bksp ctrl || alt space  fn     -     ;  enter
 
 The numbers and most of the punctuation are on the fn layer with a
 numpad-style arrangement under the right hand:
 
-     !     @     {     }     |       ||     pgup    7     8     9    *
+     !     "     {     }     |       ||     pgup    7     8     9    *
      #     $     (     )     `       ||     pgdn    4     5     6    +
      %     ^     [     ]     ~       ||       &     1     2     3    \
     L2  insert super shift bksp ctrl || alt space   fn    .     0    =
@@ -172,19 +172,19 @@ onwards.) The Teensy 2 variants use a different pinout.
 
 Outputs:
 
-    |------------+----+----+----+----|
+    |------------|----|----|----|----|
     | row number |  0 |  1 |  2 |  3 |
-    |------------+----+----+----+----|
+    |------------|----|----|----|----|
     | pin number | D0 | D1 | D3 | D2 |
-    |------------+----+----+----+----|
+    |------------|----|----|----|----|
 
 Inputs:
 
-    |---------------+----+----+----+----+----+----+----+----+----+----+----|
+    |---------------|----|----|----|----|----|----|----|----|----|----|----|
     | column number |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 |
-    |---------------+----+----+----+----+----+----+----+----+----+----+----|
+    |---------------|----|----|----|----|----|----|----|----|----|----|----|
     | pin number    | B7 | B6 | F7 | F6 | B6 | D4 | E6 | B4 | B5 | C6 | D7 |
-    |---------------+----+----+----+----+----+----+----+----+----+----+----|
+    |---------------|----|----|----|----|----|----|----|----|----|----|----|
 
 If you soldered the PCB in upside down, never fear! This can be fixed
 in the firmware without removing the switches and resoldering. Simply
