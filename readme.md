@@ -20,9 +20,9 @@ use the `teensy2` branch of this repository.
 Only a handful of punctuation marks (and no digits) are available
 unshifted, and all the modifiers are on the bottom row:
 
-     z     y     o     u     x       ||       f     g     r     c    v
-     h     i     e     a     j       ||       l     s     t     n    w
-     q     ,     .     /     '       ||       b     d     m     p    k
+     z     y     o     u     j       ||       w     d     r     c    v
+     h     i     e     a     ,       ||       g     t     s     n    p
+     /     '     x     .     q       ||       k     m     l     b    f
     esc   tab  super shift bksp ctrl || alt space  fn     -     ;  enter
 
 The numbers and most of the punctuation are on the fn layer with a
